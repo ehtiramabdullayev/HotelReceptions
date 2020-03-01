@@ -9,6 +9,7 @@
 		<module>package</module>
 		<module>eureka</module>
 		<module>config</module>
+		<module>mail-package</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

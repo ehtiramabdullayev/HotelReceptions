@@ -7,6 +7,8 @@
 		<module>guest</module>
 		<module>reception</module>
 		<module>package</module>
+		<module>eureka</module>
+		<module>config</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

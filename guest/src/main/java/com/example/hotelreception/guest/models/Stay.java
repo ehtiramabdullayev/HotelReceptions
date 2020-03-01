@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -21,58 +22,54 @@ public class Stay extends BasicEntity {
     private Guest guest;
 
     @Column(updatable = false)
-    @CreationTimestamp
-    private LocalDateTime plannedCheckInDate;
+    private LocalDate plannedCheckInDate;
 
     @Column(updatable = false)
-    @CreationTimestamp
-    private LocalDateTime plannedCheckOutDate;
+    private LocalDate plannedCheckOutDate;
 
     @Column(updatable = false)
-    @CreationTimestamp
-    private LocalDateTime checkedInAt;
+    private LocalDate checkedInAt;
 
     @Column(updatable = false)
-    @CreationTimestamp
-    private LocalDateTime checkedOutAt;
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
-    }
-
-    public void setPlannedCheckInDate(LocalDateTime plannedCheckInDate) {
-        this.plannedCheckInDate = plannedCheckInDate;
-    }
-
-    public void setPlannedCheckOutDate(LocalDateTime plannedCheckOutDate) {
-        this.plannedCheckOutDate = plannedCheckOutDate;
-    }
-
-    public void setCheckedInAt(LocalDateTime checkedInAt) {
-        this.checkedInAt = checkedInAt;
-    }
-
-    public void setCheckedOutAt(LocalDateTime checkedOutAt) {
-        this.checkedOutAt = checkedOutAt;
-    }
+    private LocalDate checkedOutAt;
 
     public Guest getGuest() {
         return guest;
     }
 
-    public LocalDateTime getPlannedCheckInDate() {
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+    public LocalDate getPlannedCheckInDate() {
         return plannedCheckInDate;
     }
 
-    public LocalDateTime getPlannedCheckOutDate() {
+    public void setPlannedCheckInDate(LocalDate plannedCheckInDate) {
+        this.plannedCheckInDate = plannedCheckInDate;
+    }
+
+    public LocalDate getPlannedCheckOutDate() {
         return plannedCheckOutDate;
     }
 
-    public LocalDateTime getCheckedInAt() {
+    public void setPlannedCheckOutDate(LocalDate plannedCheckOutDate) {
+        this.plannedCheckOutDate = plannedCheckOutDate;
+    }
+
+    public LocalDate getCheckedInAt() {
         return checkedInAt;
     }
 
-    public LocalDateTime getCheckedOutAt() {
+    public void setCheckedInAt(LocalDate checkedInAt) {
+        this.checkedInAt = checkedInAt;
+    }
+
+    public LocalDate getCheckedOutAt() {
         return checkedOutAt;
+    }
+
+    public void setCheckedOutAt(LocalDate checkedOutAt) {
+        this.checkedOutAt = checkedOutAt;
     }
 }

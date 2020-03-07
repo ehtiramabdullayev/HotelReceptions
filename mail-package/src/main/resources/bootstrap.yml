@@ -8,3 +8,12 @@ spring:
       retry:
         initial-interval: 2000
         max-attempts: 3
+
+  rabbitmq:
+    addresses: amqp://qizivjmh:tJX1AiLRQBzjwHlZLFuc8vbl4ehh5GRN@hawk.rmq.cloudamqp.com/qizivjmh
+
+
+spring.cloud.stream.bindings:
+  guestPackageChannel:
+    destination: guestPackages
+#    group:

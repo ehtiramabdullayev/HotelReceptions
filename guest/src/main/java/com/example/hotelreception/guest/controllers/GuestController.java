@@ -38,7 +38,7 @@ public class GuestController {
     }
 
     @GetMapping("/guestsIds")
-    @HystrixCommand
+//    @HystrixCommand
     public List<Integer> getGuestListIds() {
 //        List<Guest> list = guestService.list();
 

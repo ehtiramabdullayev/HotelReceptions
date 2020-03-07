@@ -9,5 +9,12 @@ spring:
         native:
           search-locations: classpath:common-config
 
+  rabbitmq:
+    host: hawk.rmq.cloudamqp.com
+    username: qizivjmh
+    virtual-host: qizivjmh
+    password: tJX1AiLRQBzjwHlZLFuc8vbl4ehh5GRN
+
+
 server:
   port: 8888

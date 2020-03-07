@@ -15,7 +15,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-@EnableHystrix
+//@EnableHystrix
 @EnableBinding(MyChannels.class)
 public class MailPackageApp {
     public static void main(String[] args) {

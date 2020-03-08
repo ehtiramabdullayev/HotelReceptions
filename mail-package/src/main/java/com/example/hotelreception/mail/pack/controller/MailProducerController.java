@@ -29,6 +29,7 @@ public class MailProducerController {
     public void publish(@PathVariable String name) {
         String greeting = "Hello, " + name + "!";
         mailProducerService.test(greeting);
+        System.out.println(greeting);
     }
 
 }

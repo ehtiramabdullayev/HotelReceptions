@@ -8,6 +8,7 @@ import org.springframework.messaging.MessageChannel;
  * @project hotel-reception
  */
 public interface MyChannels {
+
     @Output("guestPackageChannel")
     MessageChannel guestPackage();
 }

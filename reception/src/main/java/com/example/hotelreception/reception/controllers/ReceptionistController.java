@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author Ehtiram_Abdullayev on 3/8/2020
  * @project hotel-reception
@@ -24,8 +26,12 @@ public class ReceptionistController {
     }
 
     @GetMapping("/isAcceptingPackage")
-    boolean isAcceptingGuestPackages(){
+    boolean isAcceptingGuestPackages() {
         return receptionistService.isAcceptGuestPackages();
     }
 
+    @GetMapping("/guestStays")
+    List<Integer> getGuestStays() {
+        return receptionistService.getGuestStays();
+    }
 }

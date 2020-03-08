@@ -12,6 +12,8 @@ public class CheckOutRequest {
     @Positive
     private Integer guestId;
 
+//    private boolean che
+
 
     public CheckOutRequest(@NotNull @Positive Integer guestId) {
         this.guestId = guestId;

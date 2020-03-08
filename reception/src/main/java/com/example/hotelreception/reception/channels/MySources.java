@@ -8,8 +8,12 @@ import org.springframework.messaging.SubscribableChannel;
  * @project hotel-reception
  */
 public interface MySources {
-    String GUEST_PACKAGES = "guestPackageChannel";
+    String MAIL_PACKAGES = "guestPackageChannel";
+    String GUEST = "";
 
-    @Input(GUEST_PACKAGES)
-    SubscribableChannel guestPackage();
+    @Input(MAIL_PACKAGES)
+    SubscribableChannel mailPackage();
+
+    @Input(GUEST)
+    SubscribableChannel guest();
 }

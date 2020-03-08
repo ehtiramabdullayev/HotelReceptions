@@ -1,11 +1,14 @@
 package com.example.hotelreception.guest.controllers;
 
+import com.example.hotelreception.guest.api.model.request.CheckOutRequest;
 import com.example.hotelreception.guest.api.model.response.GuestResponse;
 import com.example.hotelreception.guest.models.BasicEntity;
 import com.example.hotelreception.guest.models.Guest;
+import com.example.hotelreception.guest.models.Stay;
 import com.example.hotelreception.guest.service.GuestService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +21,7 @@ import java.util.stream.Collectors;
  * @project hotel-reception
  */
 @RestController
-    @RequestMapping(value = "/guest")
+@RequestMapping(value = "/guest")
 public class GuestController {
 
     private GuestService guestService;
@@ -66,4 +69,20 @@ public class GuestController {
                 .collect(Collectors.toList());
     }
 
+
+    @GetMapping("/guestCheckouts")
+    public List<Integer> getGuestCheckOuts() {
+        List<Stay> guestCheckOuts = guestService.listGuestCheckOuts();
+
+        return guestCheckOuts
+                .stream()
+                .map(BasicEntity::getId)
+                .collect(Collectors.toList());
+    }
+
+    @PutMapping("/checkout")
+    public Integer checkOut(CheckOutRequest checkOutRequest) {
+        Integer checkOutId = guestService.checkOut(checkOutRequest);
+        return checkOutId;
+    }
 }

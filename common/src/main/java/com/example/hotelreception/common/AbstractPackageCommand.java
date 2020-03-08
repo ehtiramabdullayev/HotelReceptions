@@ -7,6 +7,9 @@ package com.example.hotelreception.common;
 public abstract class AbstractPackageCommand {
     private Integer guestId;
 
+    public AbstractPackageCommand() {
+    }
+
     public AbstractPackageCommand(Integer guestId) {
         this.guestId = guestId;
     }

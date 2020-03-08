@@ -9,6 +9,9 @@ import java.util.Objects;
 public class CreatePackageCommand extends AbstractPackageCommand{
     private Integer packageId;
 
+    public CreatePackageCommand() {
+    }
+
     public CreatePackageCommand(Integer guestId, Integer packageId) {
         super(guestId);
         this.packageId = packageId;

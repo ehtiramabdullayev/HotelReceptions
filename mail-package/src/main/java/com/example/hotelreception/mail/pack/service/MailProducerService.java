@@ -35,18 +35,19 @@ public class MailProducerService {
         return integers;
     }
 
-    public void sendPackage() {
+    public void sendPackage(Integer guestId) {
         MailPackage mailPackage = new MailPackage();
         mailPackage.setDescription("ssasas");
         MailPackage savedPackage = mailPackageRepository.save(mailPackage);
 
         Integer savedPackageId = savedPackage.getId();
         channels.guestPackage().send(MessageBuilder.withPayload(
-                new CreatePackageCommand(1, savedPackageId)).build()
+                new CreatePackageCommand(guestId, savedPackageId)).build()
         );
     }
 
     public void test(String name) {
-        channels.guestPackage().send(MessageBuilder.withPayload(name).build());
+        channels.guestPackage().send(MessageBuilder.withPayload(
+                new CreatePackageCommand(1, 2)).build());
     }
 }

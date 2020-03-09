@@ -19,12 +19,6 @@ public class Stay extends BasicEntity {
     private Integer guestId;
 
     @Column(updatable = false)
-    private LocalDate plannedCheckInDate;
-
-    @Column(updatable = false)
-    private LocalDate plannedCheckOutDate;
-
-    @Column(updatable = false)
     private LocalDate checkedInAt;
 
     @Column(updatable = false)
@@ -36,22 +30,6 @@ public class Stay extends BasicEntity {
 
     public void setGuestId(Integer guestId) {
         this.guestId = guestId;
-    }
-
-    public LocalDate getPlannedCheckInDate() {
-        return plannedCheckInDate;
-    }
-
-    public void setPlannedCheckInDate(LocalDate plannedCheckInDate) {
-        this.plannedCheckInDate = plannedCheckInDate;
-    }
-
-    public LocalDate getPlannedCheckOutDate() {
-        return plannedCheckOutDate;
-    }
-
-    public void setPlannedCheckOutDate(LocalDate plannedCheckOutDate) {
-        this.plannedCheckOutDate = plannedCheckOutDate;
     }
 
     public LocalDate getCheckedInAt() {

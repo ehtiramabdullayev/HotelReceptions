@@ -1,16 +1,11 @@
 package com.example.hotelreception.guest.controllers;
 
-import com.example.hotelreception.guest.api.model.request.CheckOutRequest;
+import com.example.hotelreception.guest.api.model.request.PickUpPackageRequest;
 import com.example.hotelreception.guest.api.model.response.GuestResponse;
 import com.example.hotelreception.guest.models.BasicEntity;
 import com.example.hotelreception.guest.models.Guest;
-import com.example.hotelreception.guest.models.Stay;
 import com.example.hotelreception.guest.service.GuestService;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +25,7 @@ public class GuestController {
         this.guestService = guestService;
     }
 
-    @GetMapping("/guests")
+    @GetMapping("/all")
     public List<GuestResponse> getGuestList() {
         List<Guest> list = guestService.list();
 
@@ -39,6 +34,12 @@ public class GuestController {
                 .map(GuestResponse::new)
                 .collect(Collectors.toList());
     }
+
+    @PostMapping("/createStay")
+    public Integer createStay(Integer guestId) {
+       return guestService.createStay(guestId);
+    }
+
 
     @GetMapping("/guestsIds")
 //    @HystrixCommand
@@ -70,19 +71,25 @@ public class GuestController {
     }
 
 
-    @GetMapping("/guestCheckouts")
-    public List<Integer> getGuestCheckOuts() {
-        List<Stay> guestCheckOuts = guestService.listGuestCheckOuts();
+//    @GetMapping("/guestCheckouts")
+//    public List<Integer> getGuestCheckOuts() {
+//        List<Stay> guestCheckOuts = guestService.listGuestCheckOuts();
+//
+//        return guestCheckOuts
+//                .stream()
+//                .map(BasicEntity::getId)
+//                .collect(Collectors.toList());
+//    }
 
-        return guestCheckOuts
-                .stream()
-                .map(BasicEntity::getId)
-                .collect(Collectors.toList());
-    }
+//    @PutMapping("/checkout")
+//    public Integer checkOut(CheckOutRequest checkOutRequest) {
+//        Integer checkOutId = guestService.checkOut(checkOutRequest);
+//        return checkOutId;
+//    }
 
-    @PutMapping("/checkout")
-    public Integer checkOut(CheckOutRequest checkOutRequest) {
-        Integer checkOutId = guestService.checkOut(checkOutRequest);
+    @PutMapping("/pickUp")
+    public Integer pickUpPackage(PickUpPackageRequest pickUpPackageRequest) {
+        Integer checkOutId = guestService.pickupPackage(pickUpPackageRequest);
         return checkOutId;
     }
 }

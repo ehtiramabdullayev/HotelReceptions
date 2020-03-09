@@ -4,26 +4,23 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 /**
- * @author Ehtiram_Abdullayev on 3/1/2020
+ * @author Ehtiram_Abdullayev on 3/9/2020
  * @project hotel-reception
  */
-public class CheckOutRequest {
+public class PickUpPackageRequest {
     @NotNull
     @Positive
     private Integer guestId;
 
-    private boolean checkPackages;
-
-    public CheckOutRequest(@NotNull @Positive Integer guestId, boolean checkPackages) {
+    public PickUpPackageRequest(@NotNull @Positive Integer guestId) {
         this.guestId = guestId;
-        this.checkPackages = checkPackages;
     }
 
     public Integer getGuestId() {
         return guestId;
     }
 
-    public boolean isCheckPackages() {
-        return checkPackages;
+    public void setGuestId(Integer guestId) {
+        this.guestId = guestId;
     }
 }

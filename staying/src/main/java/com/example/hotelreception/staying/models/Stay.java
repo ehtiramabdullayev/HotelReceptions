@@ -1,14 +1,11 @@
-package com.example.hotelreception.guest.models;
+package com.example.hotelreception.staying.models;
 
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * @author Ehtiram_Abdullayev on 3/1/2020
@@ -18,8 +15,8 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @Table(name = "stays")
 public class Stay extends BasicEntity {
-    @ManyToOne
-    private Guest guest;
+    @Column(name = "guest_id")
+    private Integer guestId;
 
     @Column(updatable = false)
     private LocalDate plannedCheckInDate;
@@ -33,12 +30,12 @@ public class Stay extends BasicEntity {
     @Column(updatable = false)
     private LocalDate checkedOutAt;
 
-    public Guest getGuest() {
-        return guest;
+    public Integer getGuestId() {
+        return guestId;
     }
 
-    public void setGuest(Guest guest) {
-        this.guest = guest;
+    public void setGuestId(Integer guestId) {
+        this.guestId = guestId;
     }
 
     public LocalDate getPlannedCheckInDate() {

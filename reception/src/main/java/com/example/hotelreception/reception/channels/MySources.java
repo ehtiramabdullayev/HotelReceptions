@@ -9,11 +9,11 @@ import org.springframework.messaging.SubscribableChannel;
  */
 public interface MySources {
     String MAIL_PACKAGES = "guestPackageChannel";
-    String GUEST = "";
+    String GUEST_CHECKOUT = "guestCheckOutChannel";
 
     @Input(MAIL_PACKAGES)
     SubscribableChannel mailPackage();
 
-    @Input(GUEST)
-    SubscribableChannel guest();
+    @Input(GUEST_CHECKOUT)
+    SubscribableChannel guestCheckOut();
 }

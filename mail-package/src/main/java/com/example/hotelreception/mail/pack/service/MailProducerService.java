@@ -21,17 +21,21 @@ import java.util.List;
 @Transactional
 public class MailProducerService {
 
-    @Autowired
     private GuestClient guestClient;
 
-    @Autowired
     private ReceptionistClient receptionistClient;
 
-    @Autowired
     private MailPackageRepository mailPackageRepository;
 
-    @Autowired
     private MyChannels channels;
+
+    public MailProducerService(GuestClient guestClient, ReceptionistClient receptionistClient,
+                               MailPackageRepository mailPackageRepository, MyChannels channels) {
+        this.guestClient = guestClient;
+        this.receptionistClient = receptionistClient;
+        this.mailPackageRepository = mailPackageRepository;
+        this.channels = channels;
+    }
 
     public List<Integer> getIds() {
         List<Integer> integers = guestClient.getGuestListIds();
@@ -39,24 +43,23 @@ public class MailProducerService {
         return integers;
     }
 
-    public void sendPackage(Integer guestId) {
+    public void sendPackage(Integer guestId, String description) {
         if (!receptionistClient.isAcceptingGuestPackages()) {
             throw new IllegalArgumentException("Isnt accepting guest packages");
         }
         MailPackage mailPackage = new MailPackage();
-        mailPackage.setDescription("ssasas");
+        mailPackage.setDescription(description);
         MailPackage savedPackage = mailPackageRepository.save(mailPackage);
 
-        Integer savedPackageId = savedPackage.getId();
         channels.guestPackage().send(MessageBuilder.withPayload(
-                new CreatePackageCommand(guestId, savedPackageId)).build()
+                new CreatePackageCommand(guestId, savedPackage.getId(), description)).build()
         );
     }
 
     public void test(String name) {
         if (receptionistClient.isAcceptingGuestPackages()) {
             channels.guestPackage().send(MessageBuilder.withPayload(
-                    new CreatePackageCommand(1, 2)).build());
+                    new CreatePackageCommand(1, 2, "a")).build());
         } else {
             throw new IllegalArgumentException("Isnt accepting guest packages");
         }

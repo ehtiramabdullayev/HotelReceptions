@@ -24,6 +24,9 @@ public class GuestPackage extends BasicEntity{
     private Integer packageId;
 
     @Column
+    private String description;
+
+    @Column
     private LocalDate packageTakenAt;
 
     public Integer getGuestId() {
@@ -48,6 +51,14 @@ public class GuestPackage extends BasicEntity{
 
     public void setPackageTakenAt(LocalDate packageTakenAt) {
         this.packageTakenAt = packageTakenAt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

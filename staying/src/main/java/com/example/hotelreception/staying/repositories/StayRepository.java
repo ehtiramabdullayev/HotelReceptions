@@ -1,6 +1,6 @@
-package com.example.hotelreception.guest.repositories;
+package com.example.hotelreception.staying.repositories;
 
-import com.example.hotelreception.guest.models.Stay;
+import com.example.hotelreception.staying.models.Stay;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

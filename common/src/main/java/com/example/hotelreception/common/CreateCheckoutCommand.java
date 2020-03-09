@@ -5,7 +5,14 @@ package com.example.hotelreception.common;
  * @project hotel-reception
  */
 public class CreateCheckoutCommand extends AbstractPackageCommand {
-    public CreateCheckoutCommand(Integer guestId) {
+    private boolean checkPackages;
+
+    public CreateCheckoutCommand(Integer guestId, boolean checkPackages) {
         super(guestId);
+        this.checkPackages = checkPackages;
+    }
+
+    public boolean isCheckPackages() {
+        return checkPackages;
     }
 }

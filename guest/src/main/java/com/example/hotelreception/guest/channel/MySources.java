@@ -11,4 +11,7 @@ public interface MySources {
 
     @Output("guestCheckOutChannel")
     MessageChannel checkOut();
+
+    @Output("guestCreateStayChannel")
+    MessageChannel createStay();
 }

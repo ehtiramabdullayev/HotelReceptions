@@ -2,6 +2,7 @@ package com.example.hotelreception.staying.services;
 
 import com.example.hotelreception.common.AbstractPackageCommand;
 import com.example.hotelreception.common.CheckoutStayCommand;
+import com.example.hotelreception.common.CreateCheckinCommand;
 import com.example.hotelreception.common.CreateStayCommand;
 import org.springframework.cloud.stream.messaging.Sink;
 import com.example.hotelreception.staying.models.Stay;
@@ -45,6 +46,13 @@ public class StayService {
             Integer checkedOutStay = checkOutGuestStay(guestId);
             log.info("Stay number {} checked out ", checkedOutStay);
 
+        } else if (abstractPackageCommand instanceof CreateCheckinCommand) {
+
+            CreateCheckinCommand checkoutStayCommand = (CreateCheckinCommand) abstractPackageCommand;
+            Integer guestId = checkoutStayCommand.getGuestId();
+            Integer checkedOutStay = checkInGuestStay(guestId);
+            log.info("Stay number {} checked in ", checkedOutStay);
+
         }
     }
 
@@ -53,7 +61,9 @@ public class StayService {
     }
 
     public Integer createGuestStay(Integer guestId) {
-        boolean isGuestAlreadyStaying = stayRepository.getStayByGuestIdAndCheckedOutAtIsNull(guestId).size() == 1;
+        boolean isGuestAlreadyStaying = stayRepository.
+                getStayByGuestIdAndCheckedOutAtIsNull(guestId).size() == 1;
+
         if (isGuestAlreadyStaying) {
             throw new RuntimeException("Guest Already staying");
         }
@@ -64,7 +74,8 @@ public class StayService {
     }
 
     public Integer checkOutGuestStay(Integer guestId) {
-        List<Stay> guestStays = stayRepository.getStayByGuestIdAndCheckedOutAtIsNull(guestId);
+        List<Stay> guestStays = stayRepository.
+                getStayByGuestIdAndCheckedOutAtIsNullAndCheckedInAtIsNotNull(guestId);
         Integer stayId = 0;
         boolean isGuestAlreadyStaying = guestStays.size() == 1;
         if (isGuestAlreadyStaying) {
@@ -77,6 +88,25 @@ public class StayService {
         }
         return stayId;
     }
+
+    public Integer checkInGuestStay(Integer guestId) {
+        List<Stay> guestStays = stayRepository.
+                getStayByGuestIdAndCheckedOutAtIsNullAndCheckedInAtIsNull(guestId);
+        Integer stayId = 0;
+        boolean isGuestAlreadyStaying = guestStays.size() == 1;
+        if (isGuestAlreadyStaying) {
+            Stay stay = guestStays.get(0);
+            stay.setCheckedInAt(LocalDate.now());
+            Stay savedStay = stayRepository.save(stay);
+            stayId = savedStay.getId();
+
+
+        } else {
+            throw new RuntimeException("There is not guest to checkout");
+        }
+        return stayId;
+    }
+
 
     public StayRepository getStayRepository() {
         return stayRepository;

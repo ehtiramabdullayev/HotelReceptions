@@ -10,5 +10,7 @@ import java.util.List;
  * @project hotel-reception
  */
 public interface StayRepository extends JpaRepository<Stay, Integer> {
+    List<Stay> getStayByGuestIdAndCheckedOutAtIsNullAndCheckedInAtIsNotNull(Integer integer);
+    List<Stay> getStayByGuestIdAndCheckedOutAtIsNullAndCheckedInAtIsNull(Integer integer);
     List<Stay> getStayByGuestIdAndCheckedOutAtIsNull(Integer integer);
 }

@@ -1,5 +1,7 @@
 package com.example.hotelreception.guest.service;
 
+import com.example.hotelreception.common.CheckoutStayCommand;
+import com.example.hotelreception.common.CreateCheckinCommand;
 import com.example.hotelreception.common.CreateStayCommand;
 import com.example.hotelreception.guest.api.model.request.PickUpPackageRequest;
 import com.example.hotelreception.guest.channel.MySources;
@@ -31,11 +33,39 @@ public class GuestService {
     }
 
     public int createStay(Integer guestId) {
-        mySources.createStay().send(MessageBuilder.withPayload(
-                new CreateStayCommand(guestId)).build()
-        );
+        if (guestRepository.existsById(guestId)) {
+            mySources.stay().send(MessageBuilder.withPayload(
+                    new CreateStayCommand(guestId)).build()
+            );
+        } else {
+            throw new RuntimeException("Guest hasn't found !");
+        }
         return guestId;
     }
+
+    public int checkOutStay(Integer guestId) {
+        if (guestRepository.existsById(guestId)) {
+            mySources.stay().send(MessageBuilder.withPayload(
+                    new CheckoutStayCommand(guestId)).build()
+            );
+        } else {
+            throw new RuntimeException("Guest hasn't found !");
+        }
+        return guestId;
+    }
+
+
+    public int checkInStay(Integer guestId) {
+        if (guestRepository.existsById(guestId)) {
+            mySources.stay().send(MessageBuilder.withPayload(
+                    new CreateCheckinCommand(guestId)).build()
+            );
+        } else {
+            throw new RuntimeException("Guest hasn't found !");
+        }
+        return guestId;
+    }
+
 
 //    public List<Stay> listGuestCheckOuts() {
 //        return stayRepository.findAll();

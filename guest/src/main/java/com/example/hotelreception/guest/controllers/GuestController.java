@@ -40,6 +40,15 @@ public class GuestController {
        return guestService.createStay(guestId);
     }
 
+    @PostMapping("/checkOut")
+    public Integer checkOut(Integer guestId) {
+        return guestService.checkOutStay(guestId);
+    }
+
+    @PostMapping("/checkIn")
+    public Integer checkIn(Integer guestId) {
+        return guestService.checkInStay(guestId);
+    }
 
     @GetMapping("/guestsIds")
 //    @HystrixCommand

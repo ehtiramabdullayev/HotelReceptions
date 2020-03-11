@@ -19,7 +19,7 @@ spring:
 
 #this is the name of the exchange and the name of the queue
 spring.cloud.stream.bindings:
-  guestPackageChannel:
+  guest:
     destination: guestPackageChannel
     group: guest-packages-queue
 

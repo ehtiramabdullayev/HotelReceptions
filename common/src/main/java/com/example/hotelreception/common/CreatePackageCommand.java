@@ -6,7 +6,7 @@ import java.util.Objects;
  * @author Ehtiram_Abdullayev on 3/7/2020
  * @project hotel-reception
  */
-public class CreatePackageCommand<T> extends AbstractPackageCommand {
+public class CreatePackageCommand extends AbstractPackageCommand {
     private int packageId;
     private String packageDescription;
 
@@ -40,7 +40,7 @@ public class CreatePackageCommand<T> extends AbstractPackageCommand {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        CreatePackageCommand<?> that = (CreatePackageCommand<?>) o;
+        CreatePackageCommand that = (CreatePackageCommand) o;
         return packageId == that.packageId &&
                 Objects.equals(packageDescription, that.packageDescription);
     }

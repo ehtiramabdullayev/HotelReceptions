@@ -1,2 +1,7 @@
 server:
   port: 8082
+
+spring.cloud.stream.bindings:
+  input:
+    destination: stay
+    group: stay

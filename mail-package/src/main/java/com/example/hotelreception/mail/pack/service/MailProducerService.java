@@ -51,14 +51,14 @@ public class MailProducerService {
         mailPackage.setDescription(description);
         MailPackage savedPackage = mailPackageRepository.save(mailPackage);
 
-        channels.guestPackage().send(MessageBuilder.withPayload(
+        channels.guest().send(MessageBuilder.withPayload(
                 new CreatePackageCommand(guestId, savedPackage.getId(), description)).build()
         );
     }
 
     public void test(String name) {
         if (receptionistClient.isAcceptingGuestPackages()) {
-            channels.guestPackage().send(MessageBuilder.withPayload(
+            channels.guest().send(MessageBuilder.withPayload(
                     new CreatePackageCommand(1, 2, "a")).build());
         } else {
             throw new IllegalArgumentException("Isnt accepting guest packages");

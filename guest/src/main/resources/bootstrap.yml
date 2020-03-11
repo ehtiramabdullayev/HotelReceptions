@@ -8,3 +8,17 @@ spring:
       retry:
         initial-interval: 2000
         max-attempts: 3
+
+  rabbitmq:
+    host: hawk.rmq.cloudamqp.com
+    username: qizivjmh
+    virtual-host: qizivjmh
+    password: tJX1AiLRQBzjwHlZLFuc8vbl4ehh5GRN
+    addresses: amqp://qizivjmh:tJX1AiLRQBzjwHlZLFuc8vbl4ehh5GRN@hawk.rmq.cloudamqp.com/qizivjmh
+
+
+spring.cloud.stream.bindings:
+  guestCreateStayChannel:
+    destination: guestCreateStayChannel
+#    group: guest-packages-queue
+
